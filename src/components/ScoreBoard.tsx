@@ -36,55 +36,84 @@ const ScoreBoard = ({
   };
 
   return (
-    <div className="min-h-screen h-full bg-gradient-to-br from-violet-600 via-purple-600 to-fuchsia-600 py-16 px-8 sm:py-20 sm:px-16 md:px-20 lg:px-24">
-      <div className="w-full max-w-5xl mx-auto">
-        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white drop-shadow-2xl mb-16 sm:mb-20 md:mb-24">
-          🎉 Quiz Complete!
-        </h1>
+    <div className="min-h-screen h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 py-8 px-6 sm:py-12 sm:px-10 flex items-center justify-center overflow-y-auto">
+      <div className="w-full max-w-3xl mx-auto">
         
-        <div className="mb-16 sm:mb-20 md:mb-24">
-          <div className="text-7xl sm:text-8xl md:text-9xl font-bold text-white drop-shadow-2xl mb-8 sm:mb-10">
-            {score}/{totalQuestions}
+        {/* Celebration Header */}
+        <div className="text-center mb-8 sm:mb-10">
+          <div className="text-6xl sm:text-7xl mb-4 animate-bounce">🎉</div>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 drop-shadow-2xl mb-2">
+            Quiz Complete!
+          </h1>
+        </div>
+        
+        {/* Score Display Card */}
+        <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl p-6 sm:p-8 border-3 border-white/20 shadow-2xl mb-6 sm:mb-8">
+          <div className="text-center mb-6">
+            <div className="text-sm sm:text-base font-black text-white/60 uppercase tracking-widest mb-3">Your Score</div>
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <div className="text-5xl sm:text-6xl md:text-7xl font-black text-white drop-shadow-2xl">
+                {score}
+              </div>
+              <div className="text-3xl sm:text-4xl font-bold text-white/40">/</div>
+              <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-white/60">
+                {totalQuestions}
+              </div>
+            </div>
+            
+            {/* Percentage Badge */}
+            <div className={`inline-block px-6 py-3 sm:px-8 sm:py-4 rounded-2xl font-black text-3xl sm:text-4xl shadow-2xl ${
+              percentage >= 80 
+                ? 'bg-gradient-to-r from-emerald-400 to-green-500 text-white' 
+                : percentage >= 60
+                  ? 'bg-gradient-to-r from-blue-400 to-cyan-500 text-white'
+                  : 'bg-gradient-to-r from-amber-400 to-orange-500 text-white'
+            }`}>
+              {percentage}%
+            </div>
           </div>
-          <div className="text-5xl sm:text-6xl md:text-7xl font-bold text-emerald-300 drop-shadow-xl mb-10 sm:mb-12 md:mb-14">
-            {percentage}%
-          </div>
-          <div className="bg-white/95 backdrop-blur-sm rounded-3xl p-10 sm:p-12 md:p-14 shadow-xl">
-            <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-violet-700">
+          
+          {/* Performance Message */}
+          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 sm:p-5 border-2 border-white/20">
+            <div className="text-base sm:text-lg md:text-xl font-bold text-white text-center">
               {getPerformanceMessage()}
             </div>
           </div>
         </div>
 
+        {/* Name Input & Save Button */}
         {!saved && !showLeaderboard && (
-          <div className="mb-12 sm:mb-16 space-y-8 sm:space-y-10">
+          <div className="mb-6 sm:mb-8 space-y-4">
             <input
               type="text"
               placeholder="✨ Enter your name"
               value={playerName}
               onChange={(e) => setPlayerName(e.target.value)}
-              className="w-full px-8 py-6 sm:px-10 sm:py-8 border-4 border-white/50 bg-white/95 backdrop-blur-sm rounded-3xl focus:border-white focus:ring-4 focus:ring-white/30 focus:outline-none text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-800 shadow-xl"
+              className="w-full px-5 py-4 sm:px-6 sm:py-5 border-3 border-white/30 bg-white/10 backdrop-blur-xl rounded-2xl focus:border-white/50 focus:ring-4 focus:ring-white/20 focus:outline-none text-lg sm:text-xl font-semibold text-white placeholder-white/50 shadow-xl"
               maxLength={20}
             />
             <button
               onClick={handleSave}
               disabled={!playerName.trim()}
-              className="w-full px-10 py-6 sm:px-12 sm:py-8 bg-white text-violet-600 text-2xl sm:text-3xl md:text-4xl font-bold rounded-3xl hover:bg-gray-100 transition-all shadow-xl hover:shadow-2xl transform hover:scale-105 disabled:bg-white/50 disabled:text-gray-400 disabled:cursor-not-allowed disabled:transform-none"
+              className="w-full px-6 py-4 sm:px-8 sm:py-5 bg-gradient-to-r from-emerald-500 to-green-600 text-white text-lg sm:text-xl font-black rounded-2xl hover:from-emerald-600 hover:to-green-700 transition-all shadow-2xl hover:shadow-emerald-500/50 transform hover:scale-105 disabled:from-gray-500 disabled:to-gray-600 disabled:cursor-not-allowed disabled:transform-none disabled:opacity-50"
             >
               💾 Save to Leaderboard
             </button>
           </div>
         )}
 
+        {/* Success Message */}
         {saved && (
-          <div className="mb-12 sm:mb-16 p-8 sm:p-10 bg-gradient-to-r from-emerald-500 to-green-600 text-white rounded-3xl font-bold text-2xl sm:text-3xl md:text-4xl shadow-xl">
-            ✓ Score saved successfully!
+          <div className="mb-6 sm:mb-8 p-5 sm:p-6 bg-gradient-to-r from-emerald-500 to-green-600 text-white rounded-2xl font-bold text-lg sm:text-xl shadow-2xl border-3 border-emerald-400 flex items-center justify-center gap-3">
+            <span className="text-2xl">✓</span>
+            Score saved successfully!
           </div>
         )}
 
+        {/* Play Again Button */}
         <button
           onClick={onRestart}
-          className="px-12 py-6 sm:px-14 sm:py-8 bg-white text-violet-600 text-2xl sm:text-3xl md:text-4xl font-bold rounded-3xl hover:bg-gray-100 transition-all shadow-xl hover:shadow-2xl transform hover:scale-105"
+          className="w-full px-6 py-4 sm:px-8 sm:py-5 bg-gradient-to-r from-purple-600 to-pink-600 text-white text-lg sm:text-xl font-black rounded-2xl hover:from-purple-700 hover:to-pink-700 transition-all shadow-2xl hover:shadow-purple-500/50 transform hover:scale-105"
         >
           🔄 Play Again
         </button>

@@ -180,69 +180,93 @@ const QuizGame = () => {
   const currentQuestion = questions[quizState.currentQuestionIndex];
 
   return (
-    <div className="min-h-screen h-full bg-gradient-to-br from-violet-600 via-purple-600 to-fuchsia-600 p-8 sm:p-12 md:p-16 lg:p-20">
-      <div className="w-full max-w-7xl mx-auto">
+    <div className="min-h-screen h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col overflow-y-auto">
+      <div className="w-full max-w-7xl mx-auto flex-1 flex flex-col">
         
         {/* Header Section */}
-        <div className="mb-16 sm:mb-20 md:mb-24">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-8 mb-12 sm:mb-16">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white drop-shadow-2xl">
-              🎮 Web Quiz
-            </h1>
+        <div className="mb-8 sm:mb-10 md:mb-12">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 sm:gap-8 mb-8 sm:mb-10">
+            <div className="relative">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 drop-shadow-2xl">
+                Web Quiz
+              </h1>
+              <div className="absolute -top-2 -left-2 text-4xl sm:text-5xl">🎯</div>
+            </div>
             <button
               onClick={() => setShowLeaderboard(true)}
-              className="px-8 py-4 sm:px-10 sm:py-5 bg-white text-violet-600 text-xl sm:text-2xl font-bold rounded-2xl hover:bg-gray-100 transition-all shadow-xl hover:shadow-2xl transform hover:scale-105"
+              className="group relative px-6 py-3 sm:px-8 sm:py-4 bg-gradient-to-r from-amber-400 to-orange-500 text-white text-base sm:text-lg font-black rounded-xl shadow-2xl hover:shadow-amber-500/50 transition-all transform hover:scale-105 hover:-rotate-1"
             >
-              🏆 Leaderboard
+              <span className="relative z-10">🏆 Leaderboard</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-amber-300 to-orange-400 rounded-xl blur opacity-0 group-hover:opacity-50 transition-opacity"></div>
             </button>
           </div>
 
-          {/* Progress Cards */}
-          <div className="grid grid-cols-2 gap-6 sm:gap-8 md:gap-10 mb-12 sm:mb-16">
-            <div className="bg-white/95 backdrop-blur-sm px-8 py-8 sm:px-10 sm:py-10 md:px-12 md:py-12 rounded-3xl shadow-xl">
-              <div className="text-sm sm:text-base md:text-lg font-bold text-violet-600 mb-3 uppercase tracking-wide">Question</div>
-              <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-800">
-                {quizState.currentQuestionIndex + 1} / {questions.length}
+          {/* Progress Cards - Redesigned */}
+          <div className="grid grid-cols-2 gap-5 sm:gap-6 md:gap-8 mb-8 sm:mb-10">
+            {/* Question Counter */}
+            <div className="group relative bg-gradient-to-br from-blue-500 to-cyan-500 px-5 py-5 sm:px-6 sm:py-6 rounded-2xl shadow-2xl hover:shadow-cyan-500/50 transition-all transform hover:scale-105 border-3 border-white/20">
+              <div className="absolute top-2 right-2 text-2xl opacity-20">📊</div>
+              <div className="text-xs font-black text-white/80 mb-1 uppercase tracking-widest">Question</div>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-black text-white drop-shadow-lg">
+                {quizState.currentQuestionIndex + 1}
+              </div>
+              <div className="text-base sm:text-lg font-bold text-white/60 mt-1">
+                of {questions.length}
               </div>
             </div>
-            <div className="bg-white/95 backdrop-blur-sm px-8 py-8 sm:px-10 sm:py-10 md:px-12 md:py-12 rounded-3xl shadow-xl">
-              <div className="text-sm sm:text-base md:text-lg font-bold text-emerald-600 mb-3 uppercase tracking-wide">Score</div>
-              <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-800">{quizState.score}</div>
+            
+            {/* Score Counter */}
+            <div className="group relative bg-gradient-to-br from-emerald-500 to-teal-500 px-5 py-5 sm:px-6 sm:py-6 rounded-2xl shadow-2xl hover:shadow-emerald-500/50 transition-all transform hover:scale-105 border-3 border-white/20">
+              <div className="absolute top-2 right-2 text-2xl opacity-20">⭐</div>
+              <div className="text-xs font-black text-white/80 mb-1 uppercase tracking-widest">Score</div>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-black text-white drop-shadow-lg">
+                {quizState.score}
+              </div>
+              <div className="text-base sm:text-lg font-bold text-white/60 mt-1">
+                points
+              </div>
             </div>
           </div>
 
-          {/* Timer */}
-          <div>
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-6">
-              <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-white drop-shadow-lg">⏱️ Time Remaining</span>
-              <span className={`text-3xl sm:text-4xl md:text-5xl font-bold px-10 py-5 rounded-2xl shadow-xl ${
+          {/* Timer - Redesigned */}
+          <div className="relative bg-gradient-to-r from-purple-600/30 to-pink-600/30 backdrop-blur-xl rounded-2xl p-4 sm:p-5 border-3 border-white/10 shadow-2xl">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-3">
+              <div className="flex items-center gap-2">
+                <span className="text-2xl sm:text-3xl">⏱️</span>
+                <span className="text-base sm:text-lg md:text-xl font-black text-white drop-shadow-lg">Time Remaining</span>
+              </div>
+              <div className={`relative px-5 py-2 sm:px-6 sm:py-3 rounded-xl shadow-2xl font-black text-2xl sm:text-3xl transition-all ${
                 quizState.timeRemaining! <= 10 
-                  ? 'bg-rose-500 text-white animate-pulse' 
-                  : 'bg-white text-emerald-600'
+                  ? 'bg-gradient-to-r from-red-500 to-rose-600 text-white animate-pulse scale-110' 
+                  : 'bg-gradient-to-r from-emerald-400 to-green-500 text-white'
               }`}>
                 {quizState.timeRemaining}s
-              </span>
+              </div>
             </div>
-            <div className="w-full bg-white/30 backdrop-blur-sm rounded-full h-6 sm:h-8 md:h-10 shadow-inner">
+            <div className="relative w-full bg-black/30 backdrop-blur-sm rounded-full h-4 sm:h-5 shadow-inner overflow-hidden">
               <div
-                className={`h-6 sm:h-8 md:h-10 rounded-full transition-all duration-1000 shadow-lg ${
+                className={`h-full rounded-full transition-all duration-1000 shadow-2xl relative ${
                   quizState.timeRemaining! <= 10 
-                    ? 'bg-gradient-to-r from-rose-500 to-red-600' 
-                    : 'bg-gradient-to-r from-emerald-500 to-green-600'
+                    ? 'bg-gradient-to-r from-red-500 via-rose-500 to-pink-600' 
+                    : 'bg-gradient-to-r from-emerald-400 via-green-500 to-teal-500'
                 }`}
                 style={{ width: `${(quizState.timeRemaining! / TIMER_DURATION) * 100}%` }}
-              />
+              >
+                <div className="absolute inset-0 bg-white/20 animate-pulse"></div>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Question Section */}
-        <QuestionCard
-          question={currentQuestion}
-          onAnswerSelect={handleAnswerSelect}
-          selectedAnswer={selectedAnswer}
-          showFeedback={showFeedback}
-        />
+        {/* Question Section - Flex grow to fill remaining space */}
+        <div className="flex-1 flex flex-col">
+          <QuestionCard
+            question={currentQuestion}
+            onAnswerSelect={handleAnswerSelect}
+            selectedAnswer={selectedAnswer}
+            showFeedback={showFeedback}
+          />
+        </div>
       </div>
     </div>
   );
