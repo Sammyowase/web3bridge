@@ -6,7 +6,7 @@ import Leaderboard from './Leaderboard.tsx';
 import LoadingSpinner from './LoadingSpinner.tsx';
 import questionsData from '../data/questions.json';
 
-const TIMER_DURATION = 30; // seconds per question
+const TIMER_DURATION = 30;
 
 const QuizGame = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -180,53 +180,86 @@ const QuizGame = () => {
   const currentQuestion = questions[quizState.currentQuestionIndex];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 flex items-center justify-center p-4 sm:p-6 md:p-8 lg:p-10">
-      <div className="w-full max-w-3xl">
-        <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 md:p-10 lg:p-12">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-8">
-            <h1 className="text-3xl sm:text-4xl font-bold text-gray-800">
-              🎮 Web Quiz
-            </h1>
+    <div className="min-h-screen h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col overflow-y-auto">
+      <div className="w-full max-w-7xl mx-auto flex-1 flex flex-col">
+        
+        {/* Header Section */}
+        <div className="mb-8 sm:mb-10 md:mb-12">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 sm:gap-8 mb-8 sm:mb-10">
+            <div className="relative">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 drop-shadow-2xl">
+                Web Quiz
+              </h1>
+              <div className="absolute -top-2 -left-2 text-4xl sm:text-5xl">🎯</div>
+            </div>
             <button
               onClick={() => setShowLeaderboard(true)}
-              className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-amber-400 to-orange-500 text-white font-bold rounded-xl hover:from-amber-500 hover:to-orange-600 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
+              className="group relative px-6 py-3 sm:px-8 sm:py-4 bg-gradient-to-r from-amber-400 to-orange-500 text-white text-base sm:text-lg font-black rounded-xl shadow-2xl hover:shadow-amber-500/50 transition-all transform hover:scale-105 hover:-rotate-1"
             >
-              🏆 Leaderboard
+              <span className="relative z-10">🏆 Leaderboard</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-amber-300 to-orange-400 rounded-xl blur opacity-0 group-hover:opacity-50 transition-opacity"></div>
             </button>
           </div>
 
-          <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-3 mb-6">
-            <div className="flex-1 px-5 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-bold rounded-xl shadow-md text-center">
-              Question {quizState.currentQuestionIndex + 1} of {questions.length}
+          {/* Progress Cards - Redesigned */}
+          <div className="grid grid-cols-2 gap-5 sm:gap-6 md:gap-8 mb-8 sm:mb-10">
+            {/* Question Counter */}
+            <div className="group relative bg-gradient-to-br from-blue-500 to-cyan-500 px-5 py-5 sm:px-6 sm:py-6 rounded-2xl shadow-2xl hover:shadow-cyan-500/50 transition-all transform hover:scale-105 border-3 border-white/20">
+              <div className="absolute top-2 right-2 text-2xl opacity-20">📊</div>
+              <div className="text-xs font-black text-white/80 mb-1 uppercase tracking-widest">Question</div>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-black text-white drop-shadow-lg">
+                {quizState.currentQuestionIndex + 1}
+              </div>
+              <div className="text-base sm:text-lg font-bold text-white/60 mt-1">
+                of {questions.length}
+              </div>
             </div>
-            <div className="flex-1 px-5 py-3 bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-bold rounded-xl shadow-md text-center">
-              Score: {quizState.score}
+            
+            {/* Score Counter */}
+            <div className="group relative bg-gradient-to-br from-emerald-500 to-teal-500 px-5 py-5 sm:px-6 sm:py-6 rounded-2xl shadow-2xl hover:shadow-emerald-500/50 transition-all transform hover:scale-105 border-3 border-white/20">
+              <div className="absolute top-2 right-2 text-2xl opacity-20">⭐</div>
+              <div className="text-xs font-black text-white/80 mb-1 uppercase tracking-widest">Score</div>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-black text-white drop-shadow-lg">
+                {quizState.score}
+              </div>
+              <div className="text-base sm:text-lg font-bold text-white/60 mt-1">
+                points
+              </div>
             </div>
           </div>
 
-          <div className="mb-8">
-            <div className="flex justify-between items-center mb-3">
-              <span className="text-sm font-bold text-gray-700">⏱️ Time Remaining</span>
-              <span className={`text-2xl font-bold px-4 py-2 rounded-xl ${
+          {/* Timer - Redesigned */}
+          <div className="relative bg-gradient-to-r from-purple-600/30 to-pink-600/30 backdrop-blur-xl rounded-2xl p-4 sm:p-5 border-3 border-white/10 shadow-2xl">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-3">
+              <div className="flex items-center gap-2">
+                <span className="text-2xl sm:text-3xl">⏱️</span>
+                <span className="text-base sm:text-lg md:text-xl font-black text-white drop-shadow-lg">Time Remaining</span>
+              </div>
+              <div className={`relative px-5 py-2 sm:px-6 sm:py-3 rounded-xl shadow-2xl font-black text-2xl sm:text-3xl transition-all ${
                 quizState.timeRemaining! <= 10 
-                  ? 'bg-gradient-to-r from-rose-500 to-red-600 text-white animate-pulse' 
-                  : 'bg-gradient-to-r from-emerald-500 to-green-600 text-white'
+                  ? 'bg-gradient-to-r from-red-500 to-rose-600 text-white animate-pulse scale-110' 
+                  : 'bg-gradient-to-r from-emerald-400 to-green-500 text-white'
               }`}>
                 {quizState.timeRemaining}s
-              </span>
+              </div>
             </div>
-            <div className="w-full bg-gray-200 rounded-full h-4 shadow-inner">
+            <div className="relative w-full bg-black/30 backdrop-blur-sm rounded-full h-4 sm:h-5 shadow-inner overflow-hidden">
               <div
-                className={`h-4 rounded-full transition-all duration-1000 ${
+                className={`h-full rounded-full transition-all duration-1000 shadow-2xl relative ${
                   quizState.timeRemaining! <= 10 
-                    ? 'bg-gradient-to-r from-rose-500 to-red-600' 
-                    : 'bg-gradient-to-r from-emerald-500 to-green-600'
+                    ? 'bg-gradient-to-r from-red-500 via-rose-500 to-pink-600' 
+                    : 'bg-gradient-to-r from-emerald-400 via-green-500 to-teal-500'
                 }`}
                 style={{ width: `${(quizState.timeRemaining! / TIMER_DURATION) * 100}%` }}
-              />
+              >
+                <div className="absolute inset-0 bg-white/20 animate-pulse"></div>
+              </div>
             </div>
           </div>
+        </div>
 
+        {/* Question Section - Flex grow to fill remaining space */}
+        <div className="flex-1 flex flex-col">
           <QuestionCard
             question={currentQuestion}
             onAnswerSelect={handleAnswerSelect}

@@ -32,62 +32,63 @@ const Leaderboard = ({ onClose }: LeaderboardProps) => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 flex items-center justify-center p-4 sm:p-6 md:p-8">
-      <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 md:p-10 max-w-3xl w-full">
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-8">
-          <h1 className="text-3xl sm:text-4xl font-bold text-gray-800">
+    <div className="min-h-screen h-full bg-gradient-to-br from-violet-600 via-purple-600 to-fuchsia-600 py-16 px-8 sm:py-20 sm:px-16 lg:px-24">
+      <div className="w-full max-w-6xl mx-auto">
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-10 mb-24">
+          <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold text-white drop-shadow-lg">
             🏆 Leaderboard
           </h1>
           <button
             onClick={onClose}
-            className="w-full sm:w-auto px-6 py-3 bg-gray-600 text-white font-bold rounded-xl hover:bg-gray-700 transition-all shadow-md transform hover:scale-105"
+            className="px-10 py-5 bg-white text-violet-600 text-xl font-bold rounded-2xl hover:bg-gray-100 transition-all shadow-xl transform hover:scale-105"
           >
             ✕ Close
           </button>
         </div>
 
         {entries.length === 0 ? (
-          <div className="text-center py-16">
-            <div className="text-8xl mb-6">🎯</div>
-            <p className="text-2xl font-bold text-gray-800 mb-3">
+          <div className="py-24">
+            <div className="text-9xl mb-12">🎯</div>
+            <p className="text-5xl font-bold text-white drop-shadow-lg mb-8">
               No scores yet!
             </p>
-            <p className="text-lg text-gray-600 font-medium">Be the first to complete the quiz!</p>
+            <p className="text-3xl text-white/90 drop-shadow-md">Be the first to complete the quiz!</p>
           </div>
         ) : (
           <>
-            <div className="space-y-4 mb-8">
+            <div className="space-y-10 sm:space-y-12 mb-20">
               {entries.map((entry, index) => (
                 <div
                   key={index}
-                  className={`flex items-center justify-between p-5 sm:p-6 rounded-xl shadow-md transform transition hover:scale-[1.02] ${
+                  className={`flex items-center justify-between p-12 sm:p-14 md:p-16 rounded-3xl shadow-2xl transform transition hover:scale-[1.01] ${
                     index === 0
-                      ? 'bg-gradient-to-r from-amber-200 to-yellow-300 border-2 border-amber-400'
+                      ? 'bg-gradient-to-r from-amber-300 to-yellow-400 border-4 border-amber-500'
                       : index === 1
-                      ? 'bg-gradient-to-r from-slate-200 to-gray-300 border-2 border-slate-400'
+                      ? 'bg-gradient-to-r from-slate-300 to-gray-400 border-4 border-slate-500'
                       : index === 2
-                      ? 'bg-gradient-to-r from-orange-200 to-amber-300 border-2 border-orange-400'
-                      : 'bg-gradient-to-r from-indigo-50 to-purple-50 border-2 border-indigo-200'
+                      ? 'bg-gradient-to-r from-orange-300 to-amber-400 border-4 border-orange-500'
+                      : 'bg-white/95 backdrop-blur-sm border-4 border-white/50'
                   }`}
                 >
-                  <div className="flex items-center space-x-4">
-                    <div className="text-3xl font-bold w-10">
+                  <div className="flex items-center space-x-8">
+                    <div className="text-6xl font-bold w-20">
                       {index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `${index + 1}.`}
                     </div>
                     <div>
-                      <div className="font-bold text-lg text-gray-800">
+                      <div className="font-bold text-3xl sm:text-4xl text-gray-800">
                         {entry.name}
                       </div>
-                      <div className="text-sm text-gray-600">
+                      <div className="text-xl text-gray-600 mt-2">
                         {formatDate(entry.date)}
                       </div>
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="text-2xl sm:text-3xl font-bold text-gray-800">
+                    <div className="text-5xl sm:text-6xl font-bold text-gray-800">
                       {entry.score}/{entry.totalQuestions}
                     </div>
-                    <div className="text-sm font-semibold text-gray-600">
+                    <div className="text-2xl font-semibold text-gray-600 mt-2">
                       {Math.round((entry.score / entry.totalQuestions) * 100)}%
                     </div>
                   </div>
@@ -97,7 +98,7 @@ const Leaderboard = ({ onClose }: LeaderboardProps) => {
 
             <button
               onClick={clearLeaderboard}
-              className="w-full px-6 py-4 bg-gradient-to-r from-rose-500 to-red-600 text-white font-bold rounded-xl hover:from-rose-600 hover:to-red-700 transition-all shadow-md hover:shadow-lg transform hover:scale-105"
+              className="w-full px-12 py-8 bg-white text-rose-600 text-2xl font-bold rounded-3xl hover:bg-gray-100 transition-all shadow-2xl hover:shadow-3xl transform hover:scale-105"
             >
               🗑️ Clear Leaderboard
             </button>
