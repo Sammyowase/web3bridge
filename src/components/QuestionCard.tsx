@@ -15,15 +15,15 @@ const QuestionCard = ({
 }: QuestionCardProps) => {
   return (
     <div className="space-y-4 sm:space-y-6">
-      <div className="bg-gradient-to-r from-pink-100 via-purple-100 to-indigo-100 p-4 sm:p-6 rounded-xl sm:rounded-2xl shadow-lg border-2 border-purple-200">
+      <div className="bg-gradient-to-br from-indigo-50 to-purple-50 p-4 sm:p-6 rounded-xl sm:rounded-2xl shadow-md border border-indigo-100">
         <div className={`inline-block px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-bold mb-2 sm:mb-3 ${
           question.category === 'Web3' 
-            ? 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white' 
-            : 'bg-gradient-to-r from-orange-500 to-pink-500 text-white'
+            ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white' 
+            : 'bg-gradient-to-r from-orange-500 to-amber-600 text-white'
         }`}>
           {question.category}
         </div>
-        <h2 className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent leading-tight">
+        <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800 leading-tight">
           {question.question}
         </h2>
       </div>
@@ -33,20 +33,20 @@ const QuestionCard = ({
           const isSelected = selectedAnswer === index;
           const isCorrect = index === question.correctAnswer;
           
-          let buttonClass = 'w-full p-3 sm:p-4 md:p-5 text-left rounded-xl sm:rounded-2xl border-2 sm:border-3 transition-all duration-300 font-semibold shadow-md text-sm sm:text-base ';
+          let buttonClass = 'w-full p-3 sm:p-4 md:p-5 text-left rounded-xl transition-all duration-200 font-medium shadow-sm text-sm sm:text-base ';
           
           if (showFeedback) {
             if (isCorrect) {
-              buttonClass += 'bg-gradient-to-r from-green-400 to-emerald-500 border-green-600 text-white shadow-lg shadow-green-300';
+              buttonClass += 'bg-gradient-to-r from-emerald-500 to-green-600 border-2 border-emerald-600 text-white shadow-lg';
             } else if (isSelected && !isCorrect) {
-              buttonClass += 'bg-gradient-to-r from-red-400 to-pink-500 border-red-600 text-white shadow-lg shadow-red-300';
+              buttonClass += 'bg-gradient-to-r from-rose-500 to-red-600 border-2 border-rose-600 text-white shadow-lg';
             } else {
-              buttonClass += 'bg-gray-100 border-gray-300 text-gray-500';
+              buttonClass += 'bg-gray-50 border-2 border-gray-200 text-gray-400';
             }
           } else {
             buttonClass += isSelected
-              ? 'bg-gradient-to-r from-blue-500 to-purple-600 border-purple-600 text-white transform scale-105 shadow-xl shadow-purple-300'
-              : 'bg-gradient-to-r from-white to-gray-50 border-purple-300 text-gray-800 hover:border-purple-500 hover:shadow-lg hover:shadow-purple-200 hover:scale-102';
+              ? 'bg-gradient-to-r from-indigo-500 to-purple-600 border-2 border-indigo-600 text-white transform scale-[1.02] shadow-lg'
+              : 'bg-white border-2 border-gray-200 text-gray-700 hover:border-indigo-400 hover:shadow-md hover:bg-indigo-50';
           }
 
           return (
@@ -68,10 +68,10 @@ const QuestionCard = ({
 
       {showFeedback && (
         <div
-          className={`p-3 sm:p-4 md:p-5 rounded-xl sm:rounded-2xl text-center font-bold text-sm sm:text-base md:text-lg shadow-lg ${
+          className={`p-3 sm:p-4 md:p-5 rounded-xl text-center font-bold text-sm sm:text-base md:text-lg shadow-md ${
             selectedAnswer === question.correctAnswer
-              ? 'bg-gradient-to-r from-green-400 to-emerald-500 text-white shadow-green-300'
-              : 'bg-gradient-to-r from-red-400 to-pink-500 text-white shadow-red-300'
+              ? 'bg-gradient-to-r from-emerald-500 to-green-600 text-white'
+              : 'bg-gradient-to-r from-rose-500 to-red-600 text-white'
           }`}
         >
           {selectedAnswer === question.correctAnswer
