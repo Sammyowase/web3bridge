@@ -3,12 +3,15 @@ import type { Question, QuizState, LeaderboardEntry } from '../types/quiz';
 import QuestionCard from './QuestionCard.tsx';
 import ScoreBoard from './ScoreBoard.tsx';
 import Leaderboard from './Leaderboard.tsx';
+import LoadingSpinner from './LoadingSpinner.tsx';
 import questionsData from '../data/questions.json';
 
 const TIMER_DURATION = 30; // seconds per question
 
 const QuizGame = () => {
-  const [questions] = useState<Question[]>(questionsData);
+  const [questions, setQuestions] = useState<Question[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [quizState, setQuizState] = useState<QuizState>({
     currentQuestionIndex: 0,
     score: 0,
@@ -19,6 +22,26 @@ const QuizGame = () => {
   const [showFeedback, setShowFeedback] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [showLeaderboard, setShowLeaderboard] = useState(false);
+
+  useEffect(() => {
+    try {
+      if (!questionsData || questionsData.length === 0) {
+        throw new Error('No questions available');
+      }
+      setQuestions(questionsData);
+      setQuizState({
+        currentQuestionIndex: 0,
+        score: 0,
+        answers: Array(questionsData.length).fill(null),
+        isComplete: false,
+        timeRemaining: TIMER_DURATION,
+      });
+      setLoading(false);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to load questions');
+      setLoading(false);
+    }
+  }, []);
 
   useEffect(() => {
     if (quizState.isComplete || showFeedback) return;
@@ -81,6 +104,7 @@ const QuizGame = () => {
   };
 
   const restartQuiz = () => {
+    if (questions.length === 0) return;
     setQuizState({
       currentQuestionIndex: 0,
       score: 0,
@@ -94,21 +118,48 @@ const QuizGame = () => {
   };
 
   const saveToLeaderboard = (name: string) => {
-    const entry: LeaderboardEntry = {
-      name,
-      score: quizState.score,
-      date: new Date().toISOString(),
-      totalQuestions: questions.length,
-    };
+    try {
+      const entry: LeaderboardEntry = {
+        name,
+        score: quizState.score,
+        date: new Date().toISOString(),
+        totalQuestions: questions.length,
+      };
 
-    const leaderboard = JSON.parse(
-      localStorage.getItem('quizLeaderboard') || '[]'
-    );
-    leaderboard.push(entry);
-    leaderboard.sort((a: LeaderboardEntry, b: LeaderboardEntry) => b.score - a.score);
-    localStorage.setItem('quizLeaderboard', JSON.stringify(leaderboard.slice(0, 10)));
-    setShowLeaderboard(true);
+      const leaderboard = JSON.parse(
+        localStorage.getItem('quizLeaderboard') || '[]'
+      );
+      leaderboard.push(entry);
+      leaderboard.sort((a: LeaderboardEntry, b: LeaderboardEntry) => b.score - a.score);
+      localStorage.setItem('quizLeaderboard', JSON.stringify(leaderboard.slice(0, 10)));
+      setShowLeaderboard(true);
+    } catch (err) {
+      console.error('Failed to save to leaderboard:', err);
+      alert('Failed to save score. Please try again.');
+    }
   };
+
+  if (loading) {
+    return <LoadingSpinner />;
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-red-600 via-orange-600 to-pink-700 flex items-center justify-center p-4">
+        <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full text-center">
+          <div className="text-6xl mb-4">❌</div>
+          <h1 className="text-3xl font-bold text-gray-800 mb-4">Error Loading Quiz</h1>
+          <p className="text-gray-600 mb-6">{error}</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="w-full px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold rounded-lg hover:from-purple-700 hover:to-blue-700 transition"
+          >
+            🔄 Reload Page
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   if (quizState.isComplete) {
     return (
