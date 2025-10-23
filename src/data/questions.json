@@ -1,107 +1,107 @@
 [
   {
     "id": 1,
-    "question": "What is the capital of France?",
-    "options": ["London", "Berlin", "Paris", "Madrid"],
-    "correctAnswer": 2,
-    "category": "Geography"
+    "question": "What does HTML stand for?",
+    "options": ["Hyper Text Markup Language", "High Tech Modern Language", "Home Tool Markup Language", "Hyperlinks Text Making Language"],
+    "correctAnswer": 0,
+    "category": "Web2"
   },
   {
     "id": 2,
-    "question": "Which planet is known as the Red Planet?",
-    "options": ["Venus", "Mars", "Jupiter", "Saturn"],
+    "question": "What does CSS stand for?",
+    "options": ["Computer Style Sheets", "Cascading Style Sheets", "Creative Style System", "Colorful Style Sheets"],
     "correctAnswer": 1,
-    "category": "Science"
+    "category": "Web2"
   },
   {
     "id": 3,
-    "question": "Who painted the Mona Lisa?",
-    "options": ["Vincent van Gogh", "Pablo Picasso", "Leonardo da Vinci", "Michelangelo"],
-    "correctAnswer": 2,
-    "category": "Art"
+    "question": "Which language is used for web development?",
+    "options": ["Python", "JavaScript", "C++", "Swift"],
+    "correctAnswer": 1,
+    "category": "Web2"
   },
   {
     "id": 4,
-    "question": "What is the largest ocean on Earth?",
-    "options": ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"],
-    "correctAnswer": 3,
-    "category": "Geography"
+    "question": "What is Bitcoin?",
+    "options": ["A video game", "A cryptocurrency", "A social media platform", "A programming language"],
+    "correctAnswer": 1,
+    "category": "Web3"
   },
   {
     "id": 5,
-    "question": "In which year did World War II end?",
-    "options": ["1943", "1944", "1945", "1946"],
-    "correctAnswer": 2,
-    "category": "History"
+    "question": "What is a blockchain?",
+    "options": ["A type of database", "A chain of blocks", "A distributed ledger", "All of the above"],
+    "correctAnswer": 3,
+    "category": "Web3"
   },
   {
     "id": 6,
-    "question": "What is the smallest prime number?",
-    "options": ["0", "1", "2", "3"],
-    "correctAnswer": 2,
-    "category": "Mathematics"
+    "question": "What does API stand for?",
+    "options": ["Application Programming Interface", "Advanced Programming Interface", "Application Process Integration", "Automated Program Interface"],
+    "correctAnswer": 0,
+    "category": "Web2"
   },
   {
     "id": 7,
-    "question": "Which programming language is known as the 'language of the web'?",
-    "options": ["Python", "JavaScript", "Java", "C++"],
+    "question": "What is Ethereum?",
+    "options": ["A cryptocurrency only", "A blockchain platform", "A web browser", "A social network"],
     "correctAnswer": 1,
-    "category": "Technology"
+    "category": "Web3"
   },
   {
     "id": 8,
-    "question": "What is the chemical symbol for gold?",
-    "options": ["Go", "Gd", "Au", "Ag"],
-    "correctAnswer": 2,
-    "category": "Science"
+    "question": "What is a smart contract?",
+    "options": ["A legal document", "Self-executing code on blockchain", "A mobile app", "A website"],
+    "correctAnswer": 1,
+    "category": "Web3"
   },
   {
     "id": 9,
-    "question": "Who wrote 'Romeo and Juliet'?",
-    "options": ["Charles Dickens", "William Shakespeare", "Jane Austen", "Mark Twain"],
+    "question": "What is React?",
+    "options": ["A database", "A JavaScript library", "A programming language", "An operating system"],
     "correctAnswer": 1,
-    "category": "Literature"
+    "category": "Web2"
   },
   {
     "id": 10,
-    "question": "What is the speed of light in vacuum?",
-    "options": ["299,792 km/s", "150,000 km/s", "500,000 km/s", "1,000,000 km/s"],
-    "correctAnswer": 0,
-    "category": "Physics"
+    "question": "What is a wallet in Web3?",
+    "options": ["A physical wallet", "A digital storage for crypto", "A bank account", "A credit card"],
+    "correctAnswer": 1,
+    "category": "Web3"
   },
   {
     "id": 11,
-    "question": "Which country is home to the kangaroo?",
-    "options": ["New Zealand", "South Africa", "Australia", "Brazil"],
-    "correctAnswer": 2,
-    "category": "Geography"
+    "question": "What does HTTP stand for?",
+    "options": ["HyperText Transfer Protocol", "High Transfer Text Protocol", "Home Text Transfer Protocol", "Hyperlink Text Protocol"],
+    "correctAnswer": 0,
+    "category": "Web2"
   },
   {
     "id": 12,
-    "question": "What does HTML stand for?",
-    "options": ["Hyper Text Markup Language", "High Tech Modern Language", "Home Tool Markup Language", "Hyperlinks and Text Markup Language"],
+    "question": "What is an NFT?",
+    "options": ["Non-Fungible Token", "New File Type", "Network File Transfer", "Next Future Technology"],
     "correctAnswer": 0,
-    "category": "Technology"
+    "category": "Web3"
   },
   {
     "id": 13,
-    "question": "How many continents are there on Earth?",
-    "options": ["5", "6", "7", "8"],
-    "correctAnswer": 2,
-    "category": "Geography"
+    "question": "What is Node.js?",
+    "options": ["A web browser", "A JavaScript runtime", "A database", "A CSS framework"],
+    "correctAnswer": 1,
+    "category": "Web2"
   },
   {
     "id": 14,
-    "question": "What is the largest mammal in the world?",
-    "options": ["African Elephant", "Blue Whale", "Giraffe", "Polar Bear"],
+    "question": "What is gas fee in blockchain?",
+    "options": ["Electricity cost", "Transaction fee", "Mining reward", "Storage cost"],
     "correctAnswer": 1,
-    "category": "Biology"
+    "category": "Web3"
   },
   {
     "id": 15,
-    "question": "In which year did the first iPhone release?",
-    "options": ["2005", "2006", "2007", "2008"],
-    "correctAnswer": 2,
-    "category": "Technology"
+    "question": "What is a DApp?",
+    "options": ["Desktop Application", "Decentralized Application", "Data Application", "Digital App"],
+    "correctAnswer": 1,
+    "category": "Web3"
   }
 ]

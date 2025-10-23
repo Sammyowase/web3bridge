@@ -32,13 +32,15 @@ const Leaderboard = ({ onClose }: LeaderboardProps) => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-600 via-blue-600 to-indigo-700 flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-2xl w-full">
-        <div className="flex justify-between items-center mb-6">
-          <h1 className="text-3xl font-bold text-gray-800">🏆 Leaderboard</h1>
+    <div className="min-h-screen bg-gradient-to-br from-pink-500 via-purple-600 via-blue-600 to-cyan-500 flex items-center justify-center p-4">
+      <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-8 max-w-2xl w-full border-4 border-purple-300">
+        <div className="flex justify-between items-center mb-8">
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-yellow-500 via-orange-500 to-pink-500 bg-clip-text text-transparent">
+            🏆 Leaderboard
+          </h1>
           <button
             onClick={onClose}
-            className="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition"
+            className="px-5 py-3 bg-gradient-to-r from-gray-500 to-gray-600 text-white font-bold rounded-xl hover:from-gray-600 hover:to-gray-700 transition shadow-lg transform hover:scale-105"
           >
             ✕ Close
           </button>
@@ -46,40 +48,46 @@ const Leaderboard = ({ onClose }: LeaderboardProps) => {
 
         {entries.length === 0 ? (
           <div className="text-center py-12">
-            <div className="text-6xl mb-4">🎯</div>
-            <p className="text-xl text-gray-600">No scores yet!</p>
-            <p className="text-gray-500 mt-2">Be the first to complete the quiz!</p>
+            <div className="text-8xl mb-6">🎯</div>
+            <p className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-2">
+              No scores yet!
+            </p>
+            <p className="text-lg text-purple-600 font-semibold">Be the first to complete the quiz!</p>
           </div>
         ) : (
           <>
-            <div className="space-y-3 mb-6">
+            <div className="space-y-4 mb-6">
               {entries.map((entry, index) => (
                 <div
                   key={index}
-                  className={`flex items-center justify-between p-4 rounded-xl ${
+                  className={`flex items-center justify-between p-5 rounded-2xl shadow-lg transform transition hover:scale-102 ${
                     index === 0
-                      ? 'bg-gradient-to-r from-yellow-100 to-yellow-200 border-2 border-yellow-400'
+                      ? 'bg-gradient-to-r from-yellow-300 via-yellow-400 to-orange-400 border-3 border-yellow-500 shadow-yellow-300'
                       : index === 1
-                      ? 'bg-gradient-to-r from-gray-100 to-gray-200 border-2 border-gray-400'
+                      ? 'bg-gradient-to-r from-gray-300 via-gray-400 to-gray-500 border-3 border-gray-500 shadow-gray-300'
                       : index === 2
-                      ? 'bg-gradient-to-r from-orange-100 to-orange-200 border-2 border-orange-400'
-                      : 'bg-gray-50 border-2 border-gray-200'
+                      ? 'bg-gradient-to-r from-orange-300 via-orange-400 to-red-400 border-3 border-orange-500 shadow-orange-300'
+                      : 'bg-gradient-to-r from-purple-100 to-blue-100 border-3 border-purple-300'
                   }`}
                 >
                   <div className="flex items-center space-x-4">
-                    <div className="text-2xl font-bold w-8">
+                    <div className="text-3xl font-bold w-10">
                       {index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `${index + 1}.`}
                     </div>
                     <div>
-                      <div className="font-bold text-gray-800">{entry.name}</div>
-                      <div className="text-sm text-gray-600">{formatDate(entry.date)}</div>
+                      <div className={`font-bold text-lg ${index < 3 ? 'text-white' : 'text-purple-800'}`}>
+                        {entry.name}
+                      </div>
+                      <div className={`text-sm ${index < 3 ? 'text-white/90' : 'text-purple-600'}`}>
+                        {formatDate(entry.date)}
+                      </div>
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="text-2xl font-bold text-gray-800">
+                    <div className={`text-3xl font-bold ${index < 3 ? 'text-white' : 'text-purple-800'}`}>
                       {entry.score}/{entry.totalQuestions}
                     </div>
-                    <div className="text-sm text-gray-600">
+                    <div className={`text-sm font-semibold ${index < 3 ? 'text-white/90' : 'text-purple-600'}`}>
                       {Math.round((entry.score / entry.totalQuestions) * 100)}%
                     </div>
                   </div>
@@ -89,7 +97,7 @@ const Leaderboard = ({ onClose }: LeaderboardProps) => {
 
             <button
               onClick={clearLeaderboard}
-              className="w-full px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition"
+              className="w-full px-6 py-4 bg-gradient-to-r from-red-500 to-pink-600 text-white font-bold rounded-2xl hover:from-red-600 hover:to-pink-700 transition shadow-lg hover:shadow-xl transform hover:scale-105"
             >
               🗑️ Clear Leaderboard
             </button>

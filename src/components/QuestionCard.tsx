@@ -15,32 +15,38 @@ const QuestionCard = ({
 }: QuestionCardProps) => {
   return (
     <div className="space-y-6">
-      <div className="bg-gradient-to-r from-purple-100 to-blue-100 p-6 rounded-xl">
-        <div className="text-sm font-semibold text-purple-600 mb-2">
+      <div className="bg-gradient-to-r from-pink-100 via-purple-100 to-indigo-100 p-6 rounded-2xl shadow-lg border-2 border-purple-200">
+        <div className={`inline-block px-4 py-1 rounded-full text-sm font-bold mb-3 ${
+          question.category === 'Web3' 
+            ? 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white' 
+            : 'bg-gradient-to-r from-orange-500 to-pink-500 text-white'
+        }`}>
           {question.category}
         </div>
-        <h2 className="text-2xl font-bold text-gray-800">{question.question}</h2>
+        <h2 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+          {question.question}
+        </h2>
       </div>
 
-      <div className="space-y-3">
+      <div className="space-y-4">
         {question.options.map((option, index) => {
           const isSelected = selectedAnswer === index;
           const isCorrect = index === question.correctAnswer;
           
-          let buttonClass = 'w-full p-4 text-left rounded-xl border-2 transition-all duration-300 ';
+          let buttonClass = 'w-full p-5 text-left rounded-2xl border-3 transition-all duration-300 font-semibold shadow-md ';
           
           if (showFeedback) {
             if (isCorrect) {
-              buttonClass += 'bg-green-100 border-green-500 text-green-800';
+              buttonClass += 'bg-gradient-to-r from-green-400 to-emerald-500 border-green-600 text-white shadow-lg shadow-green-300';
             } else if (isSelected && !isCorrect) {
-              buttonClass += 'bg-red-100 border-red-500 text-red-800';
+              buttonClass += 'bg-gradient-to-r from-red-400 to-pink-500 border-red-600 text-white shadow-lg shadow-red-300';
             } else {
-              buttonClass += 'bg-gray-100 border-gray-300 text-gray-600';
+              buttonClass += 'bg-gray-100 border-gray-300 text-gray-500';
             }
           } else {
             buttonClass += isSelected
-              ? 'bg-blue-100 border-blue-500 text-blue-800 transform scale-105'
-              : 'bg-white border-gray-300 text-gray-800 hover:border-blue-400 hover:bg-blue-50';
+              ? 'bg-gradient-to-r from-blue-500 to-purple-600 border-purple-600 text-white transform scale-105 shadow-xl shadow-purple-300'
+              : 'bg-gradient-to-r from-white to-gray-50 border-purple-300 text-gray-800 hover:border-purple-500 hover:shadow-lg hover:shadow-purple-200 hover:scale-102';
           }
 
           return (
@@ -62,10 +68,10 @@ const QuestionCard = ({
 
       {showFeedback && (
         <div
-          className={`p-4 rounded-xl text-center font-semibold ${
+          className={`p-5 rounded-2xl text-center font-bold text-lg shadow-lg ${
             selectedAnswer === question.correctAnswer
-              ? 'bg-green-100 text-green-800'
-              : 'bg-red-100 text-red-800'
+              ? 'bg-gradient-to-r from-green-400 to-emerald-500 text-white shadow-green-300'
+              : 'bg-gradient-to-r from-red-400 to-pink-500 text-white shadow-red-300'
           }`}
         >
           {selectedAnswer === question.correctAnswer

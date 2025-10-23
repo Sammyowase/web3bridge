@@ -180,41 +180,47 @@ const QuizGame = () => {
   const currentQuestion = questions[quizState.currentQuestionIndex];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-600 via-blue-600 to-indigo-700 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-pink-500 via-purple-600 via-blue-600 to-cyan-500 flex items-center justify-center p-4 animate-gradient">
       <div className="w-full max-w-2xl">
-        <div className="bg-white rounded-2xl shadow-2xl p-8">
+        <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-8 border-4 border-purple-300">
           <div className="flex justify-between items-center mb-6">
-            <h1 className="text-3xl font-bold text-gray-800">Quiz Game</h1>
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 bg-clip-text text-transparent">
+              🎮 Web Quiz Game
+            </h1>
             <button
               onClick={() => setShowLeaderboard(true)}
-              className="px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition"
+              className="px-5 py-3 bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-bold rounded-xl hover:from-yellow-500 hover:to-orange-600 transition shadow-lg hover:shadow-xl transform hover:scale-105"
             >
               🏆 Leaderboard
             </button>
           </div>
 
           <div className="flex justify-between items-center mb-6">
-            <div className="text-lg font-semibold text-gray-700">
+            <div className="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-xl shadow-md">
               Question {quizState.currentQuestionIndex + 1} of {questions.length}
             </div>
-            <div className="text-lg font-semibold text-gray-700">
+            <div className="px-4 py-2 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold rounded-xl shadow-md">
               Score: {quizState.score}
             </div>
           </div>
 
           <div className="mb-6">
-            <div className="flex justify-between items-center mb-2">
-              <span className="text-sm font-medium text-gray-600">Time Remaining</span>
-              <span className={`text-lg font-bold ${
-                quizState.timeRemaining! <= 10 ? 'text-red-600' : 'text-green-600'
+            <div className="flex justify-between items-center mb-3">
+              <span className="text-sm font-bold text-purple-700">⏱️ Time Remaining</span>
+              <span className={`text-2xl font-bold px-4 py-1 rounded-xl ${
+                quizState.timeRemaining! <= 10 
+                  ? 'bg-gradient-to-r from-red-500 to-pink-500 text-white animate-pulse' 
+                  : 'bg-gradient-to-r from-green-500 to-emerald-500 text-white'
               }`}>
                 {quizState.timeRemaining}s
               </span>
             </div>
-            <div className="w-full bg-gray-200 rounded-full h-2">
+            <div className="w-full bg-gray-200 rounded-full h-4 shadow-inner">
               <div
-                className={`h-2 rounded-full transition-all duration-1000 ${
-                  quizState.timeRemaining! <= 10 ? 'bg-red-600' : 'bg-green-600'
+                className={`h-4 rounded-full transition-all duration-1000 shadow-lg ${
+                  quizState.timeRemaining! <= 10 
+                    ? 'bg-gradient-to-r from-red-500 to-pink-600' 
+                    : 'bg-gradient-to-r from-green-500 to-emerald-600'
                 }`}
                 style={{ width: `${(quizState.timeRemaining! / TIMER_DURATION) * 100}%` }}
               />
