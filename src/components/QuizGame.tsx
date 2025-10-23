@@ -180,40 +180,40 @@ const QuizGame = () => {
   const currentQuestion = questions[quizState.currentQuestionIndex];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-violet-600 via-purple-600 to-fuchsia-600 p-6 sm:p-8 md:p-12 lg:p-16">
-      <div className="max-w-6xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-violet-600 via-purple-600 to-fuchsia-600 py-8 px-6 sm:px-12 lg:px-20">
+      <div className="max-w-7xl">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-6 mb-12 sm:mb-16">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-16">
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white drop-shadow-lg">
             🎮 Web Quiz
           </h1>
           <button
             onClick={() => setShowLeaderboard(true)}
-            className="px-8 py-4 bg-white text-violet-600 text-lg font-bold rounded-2xl hover:bg-gray-100 transition-all shadow-xl hover:shadow-2xl transform hover:scale-105"
+            className="px-10 py-5 bg-white text-violet-600 text-xl font-bold rounded-2xl hover:bg-gray-100 transition-all shadow-xl hover:shadow-2xl transform hover:scale-105"
           >
             🏆 Leaderboard
           </button>
         </div>
 
         {/* Progress Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12 sm:mb-16">
-          <div className="bg-white/95 backdrop-blur-sm px-8 py-6 rounded-3xl text-center shadow-2xl">
-            <div className="text-sm font-semibold text-violet-600 mb-2">QUESTION</div>
-            <div className="text-4xl sm:text-5xl font-bold text-gray-800">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-16">
+          <div className="bg-white/95 backdrop-blur-sm px-10 py-8 rounded-3xl shadow-2xl">
+            <div className="text-sm font-bold text-violet-600 mb-3 uppercase tracking-wider">Question</div>
+            <div className="text-5xl font-bold text-gray-800">
               {quizState.currentQuestionIndex + 1} / {questions.length}
             </div>
           </div>
-          <div className="bg-white/95 backdrop-blur-sm px-8 py-6 rounded-3xl text-center shadow-2xl">
-            <div className="text-sm font-semibold text-emerald-600 mb-2">SCORE</div>
-            <div className="text-4xl sm:text-5xl font-bold text-gray-800">{quizState.score}</div>
+          <div className="bg-white/95 backdrop-blur-sm px-10 py-8 rounded-3xl shadow-2xl">
+            <div className="text-sm font-bold text-emerald-600 mb-3 uppercase tracking-wider">Score</div>
+            <div className="text-5xl font-bold text-gray-800">{quizState.score}</div>
           </div>
         </div>
 
         {/* Timer */}
-        <div className="mb-12 sm:mb-16">
-          <div className="flex justify-between items-center mb-4">
-            <span className="text-xl sm:text-2xl font-bold text-white drop-shadow-lg">⏱️ Time Remaining</span>
-            <span className={`text-3xl sm:text-4xl font-bold px-8 py-3 rounded-2xl shadow-2xl ${
+        <div className="mb-16">
+          <div className="flex justify-between items-center mb-5">
+            <span className="text-2xl font-bold text-white drop-shadow-lg">⏱️ Time Remaining</span>
+            <span className={`text-4xl font-bold px-10 py-4 rounded-2xl shadow-2xl ${
               quizState.timeRemaining! <= 10 
                 ? 'bg-rose-500 text-white animate-pulse' 
                 : 'bg-white text-emerald-600'
@@ -221,9 +221,9 @@ const QuizGame = () => {
               {quizState.timeRemaining}s
             </span>
           </div>
-          <div className="w-full bg-white/30 backdrop-blur-sm rounded-full h-6 shadow-inner">
+          <div className="w-full bg-white/30 backdrop-blur-sm rounded-full h-8 shadow-inner">
             <div
-              className={`h-6 rounded-full transition-all duration-1000 shadow-lg ${
+              className={`h-8 rounded-full transition-all duration-1000 shadow-lg ${
                 quizState.timeRemaining! <= 10 
                   ? 'bg-gradient-to-r from-rose-500 to-red-600' 
                   : 'bg-gradient-to-r from-emerald-500 to-green-600'
