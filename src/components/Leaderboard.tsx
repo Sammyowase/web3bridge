@@ -32,80 +32,78 @@ const Leaderboard = ({ onClose }: LeaderboardProps) => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-violet-600 via-purple-600 to-fuchsia-600 py-8 px-4">
-      <div className="max-w-4xl mx-auto">
-        <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12">
-          {/* Header */}
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6 mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-800">
-              🏆 Leaderboard
-            </h1>
-            <button
-              onClick={onClose}
-              className="px-8 py-4 bg-gray-600 text-white text-lg font-bold rounded-2xl hover:bg-gray-700 transition-all shadow-lg transform hover:scale-105"
-            >
-              ✕ Close
-            </button>
-          </div>
+    <div className="min-h-screen bg-gradient-to-br from-violet-600 via-purple-600 to-fuchsia-600 p-6 sm:p-8 md:p-12 lg:p-16">
+      <div className="max-w-5xl mx-auto">
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-6 mb-16">
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white drop-shadow-lg">
+            🏆 Leaderboard
+          </h1>
+          <button
+            onClick={onClose}
+            className="px-8 py-4 bg-white text-violet-600 text-lg font-bold rounded-2xl hover:bg-gray-100 transition-all shadow-xl transform hover:scale-105"
+          >
+            ✕ Close
+          </button>
+        </div>
 
-          {entries.length === 0 ? (
-            <div className="text-center py-20">
-              <div className="text-9xl mb-8">🎯</div>
-              <p className="text-3xl font-bold text-gray-800 mb-4">
-                No scores yet!
-              </p>
-              <p className="text-xl text-gray-600 font-medium">Be the first to complete the quiz!</p>
-            </div>
-          ) : (
-            <>
-              <div className="space-y-5 mb-10">
-                {entries.map((entry, index) => (
-                  <div
-                    key={index}
-                    className={`flex items-center justify-between p-6 md:p-8 rounded-2xl shadow-lg transform transition hover:scale-[1.02] ${
-                      index === 0
-                        ? 'bg-gradient-to-r from-amber-200 to-yellow-300 border-3 border-amber-400'
-                        : index === 1
-                        ? 'bg-gradient-to-r from-slate-200 to-gray-300 border-3 border-slate-400'
-                        : index === 2
-                        ? 'bg-gradient-to-r from-orange-200 to-amber-300 border-3 border-orange-400'
-                        : 'bg-gradient-to-r from-violet-50 to-purple-50 border-3 border-violet-200'
-                    }`}
-                  >
-                    <div className="flex items-center space-x-5">
-                      <div className="text-4xl font-bold w-12">
-                        {index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `${index + 1}.`}
-                      </div>
-                      <div>
-                        <div className="font-bold text-xl text-gray-800">
-                          {entry.name}
-                        </div>
-                        <div className="text-base text-gray-600 mt-1">
-                          {formatDate(entry.date)}
-                        </div>
-                      </div>
+        {entries.length === 0 ? (
+          <div className="text-center py-20">
+            <div className="text-9xl mb-10">🎯</div>
+            <p className="text-4xl font-bold text-white drop-shadow-lg mb-6">
+              No scores yet!
+            </p>
+            <p className="text-2xl text-white/90 drop-shadow-md">Be the first to complete the quiz!</p>
+          </div>
+        ) : (
+          <>
+            <div className="space-y-6 mb-12">
+              {entries.map((entry, index) => (
+                <div
+                  key={index}
+                  className={`flex items-center justify-between p-8 sm:p-10 rounded-3xl shadow-2xl transform transition hover:scale-[1.02] ${
+                    index === 0
+                      ? 'bg-gradient-to-r from-amber-300 to-yellow-400 border-4 border-amber-500'
+                      : index === 1
+                      ? 'bg-gradient-to-r from-slate-300 to-gray-400 border-4 border-slate-500'
+                      : index === 2
+                      ? 'bg-gradient-to-r from-orange-300 to-amber-400 border-4 border-orange-500'
+                      : 'bg-white/95 backdrop-blur-sm border-4 border-white/50'
+                  }`}
+                >
+                  <div className="flex items-center space-x-6">
+                    <div className="text-5xl font-bold w-16">
+                      {index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `${index + 1}.`}
                     </div>
-                    <div className="text-right">
-                      <div className="text-3xl md:text-4xl font-bold text-gray-800">
-                        {entry.score}/{entry.totalQuestions}
+                    <div>
+                      <div className="font-bold text-2xl sm:text-3xl text-gray-800">
+                        {entry.name}
                       </div>
-                      <div className="text-base font-semibold text-gray-600 mt-1">
-                        {Math.round((entry.score / entry.totalQuestions) * 100)}%
+                      <div className="text-lg text-gray-600 mt-2">
+                        {formatDate(entry.date)}
                       </div>
                     </div>
                   </div>
-                ))}
-              </div>
+                  <div className="text-right">
+                    <div className="text-4xl sm:text-5xl font-bold text-gray-800">
+                      {entry.score}/{entry.totalQuestions}
+                    </div>
+                    <div className="text-xl font-semibold text-gray-600 mt-2">
+                      {Math.round((entry.score / entry.totalQuestions) * 100)}%
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
 
-              <button
-                onClick={clearLeaderboard}
-                className="w-full px-8 py-5 bg-gradient-to-r from-rose-500 to-red-600 text-white text-lg font-bold rounded-2xl hover:from-rose-600 hover:to-red-700 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
-              >
-                🗑️ Clear Leaderboard
-              </button>
-            </>
-          )}
-        </div>
+            <button
+              onClick={clearLeaderboard}
+              className="w-full px-10 py-6 bg-white text-rose-600 text-xl font-bold rounded-3xl hover:bg-gray-100 transition-all shadow-2xl hover:shadow-3xl transform hover:scale-105"
+            >
+              🗑️ Clear Leaderboard
+            </button>
+          </>
+        )}
       </div>
     </div>
   );

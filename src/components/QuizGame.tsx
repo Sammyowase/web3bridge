@@ -180,66 +180,66 @@ const QuizGame = () => {
   const currentQuestion = questions[quizState.currentQuestionIndex];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-violet-600 via-purple-600 to-fuchsia-600 py-8 px-4">
-      <div className="max-w-4xl mx-auto">
-        <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12">
-          {/* Header */}
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6 mb-10">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-800">
-              🎮 Web Quiz
-            </h1>
-            <button
-              onClick={() => setShowLeaderboard(true)}
-              className="px-8 py-4 bg-gradient-to-r from-amber-400 to-orange-500 text-white text-lg font-bold rounded-2xl hover:from-amber-500 hover:to-orange-600 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
-            >
-              🏆 Leaderboard
-            </button>
-          </div>
-
-          {/* Progress */}
-          <div className="grid grid-cols-2 gap-4 mb-10">
-            <div className="px-6 py-4 bg-gradient-to-r from-violet-500 to-purple-600 text-white font-bold rounded-2xl text-center shadow-lg">
-              <div className="text-sm opacity-90 mb-1">Question</div>
-              <div className="text-2xl">{quizState.currentQuestionIndex + 1} / {questions.length}</div>
-            </div>
-            <div className="px-6 py-4 bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-bold rounded-2xl text-center shadow-lg">
-              <div className="text-sm opacity-90 mb-1">Score</div>
-              <div className="text-2xl">{quizState.score}</div>
-            </div>
-          </div>
-
-          {/* Timer */}
-          <div className="mb-10">
-            <div className="flex justify-between items-center mb-4">
-              <span className="text-lg font-bold text-gray-700">⏱️ Time Remaining</span>
-              <span className={`text-3xl font-bold px-6 py-2 rounded-2xl shadow-lg ${
-                quizState.timeRemaining! <= 10 
-                  ? 'bg-gradient-to-r from-rose-500 to-red-600 text-white animate-pulse' 
-                  : 'bg-gradient-to-r from-emerald-500 to-green-600 text-white'
-              }`}>
-                {quizState.timeRemaining}s
-              </span>
-            </div>
-            <div className="w-full bg-gray-200 rounded-full h-5 shadow-inner">
-              <div
-                className={`h-5 rounded-full transition-all duration-1000 shadow-lg ${
-                  quizState.timeRemaining! <= 10 
-                    ? 'bg-gradient-to-r from-rose-500 to-red-600' 
-                    : 'bg-gradient-to-r from-emerald-500 to-green-600'
-                }`}
-                style={{ width: `${(quizState.timeRemaining! / TIMER_DURATION) * 100}%` }}
-              />
-            </div>
-          </div>
-
-          {/* Question */}
-          <QuestionCard
-            question={currentQuestion}
-            onAnswerSelect={handleAnswerSelect}
-            selectedAnswer={selectedAnswer}
-            showFeedback={showFeedback}
-          />
+    <div className="min-h-screen bg-gradient-to-br from-violet-600 via-purple-600 to-fuchsia-600 p-6 sm:p-8 md:p-12 lg:p-16">
+      <div className="max-w-6xl mx-auto">
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-6 mb-12 sm:mb-16">
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white drop-shadow-lg">
+            🎮 Web Quiz
+          </h1>
+          <button
+            onClick={() => setShowLeaderboard(true)}
+            className="px-8 py-4 bg-white text-violet-600 text-lg font-bold rounded-2xl hover:bg-gray-100 transition-all shadow-xl hover:shadow-2xl transform hover:scale-105"
+          >
+            🏆 Leaderboard
+          </button>
         </div>
+
+        {/* Progress Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12 sm:mb-16">
+          <div className="bg-white/95 backdrop-blur-sm px-8 py-6 rounded-3xl text-center shadow-2xl">
+            <div className="text-sm font-semibold text-violet-600 mb-2">QUESTION</div>
+            <div className="text-4xl sm:text-5xl font-bold text-gray-800">
+              {quizState.currentQuestionIndex + 1} / {questions.length}
+            </div>
+          </div>
+          <div className="bg-white/95 backdrop-blur-sm px-8 py-6 rounded-3xl text-center shadow-2xl">
+            <div className="text-sm font-semibold text-emerald-600 mb-2">SCORE</div>
+            <div className="text-4xl sm:text-5xl font-bold text-gray-800">{quizState.score}</div>
+          </div>
+        </div>
+
+        {/* Timer */}
+        <div className="mb-12 sm:mb-16">
+          <div className="flex justify-between items-center mb-4">
+            <span className="text-xl sm:text-2xl font-bold text-white drop-shadow-lg">⏱️ Time Remaining</span>
+            <span className={`text-3xl sm:text-4xl font-bold px-8 py-3 rounded-2xl shadow-2xl ${
+              quizState.timeRemaining! <= 10 
+                ? 'bg-rose-500 text-white animate-pulse' 
+                : 'bg-white text-emerald-600'
+            }`}>
+              {quizState.timeRemaining}s
+            </span>
+          </div>
+          <div className="w-full bg-white/30 backdrop-blur-sm rounded-full h-6 shadow-inner">
+            <div
+              className={`h-6 rounded-full transition-all duration-1000 shadow-lg ${
+                quizState.timeRemaining! <= 10 
+                  ? 'bg-gradient-to-r from-rose-500 to-red-600' 
+                  : 'bg-gradient-to-r from-emerald-500 to-green-600'
+              }`}
+              style={{ width: `${(quizState.timeRemaining! / TIMER_DURATION) * 100}%` }}
+            />
+          </div>
+        </div>
+
+        {/* Question */}
+        <QuestionCard
+          question={currentQuestion}
+          onAnswerSelect={handleAnswerSelect}
+          selectedAnswer={selectedAnswer}
+          showFeedback={showFeedback}
+        />
       </div>
     </div>
   );

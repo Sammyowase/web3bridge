@@ -14,41 +14,41 @@ const QuestionCard = ({
   showFeedback,
 }: QuestionCardProps) => {
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       {/* Question Box */}
-      <div className="bg-gradient-to-br from-violet-50 to-purple-50 p-8 rounded-3xl shadow-md border-2 border-violet-100">
-        <div className={`inline-block px-5 py-2 rounded-full text-sm font-bold mb-5 shadow-md ${
+      <div className="bg-white/95 backdrop-blur-sm p-8 sm:p-10 lg:p-12 rounded-3xl shadow-2xl">
+        <div className={`inline-block px-6 py-3 rounded-full text-sm font-bold mb-6 shadow-lg ${
           question.category === 'Web3' 
             ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white' 
             : 'bg-gradient-to-r from-orange-500 to-amber-600 text-white'
         }`}>
           {question.category}
         </div>
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 leading-relaxed">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 leading-relaxed">
           {question.question}
         </h2>
       </div>
 
       {/* Options */}
-      <div className="space-y-5">
+      <div className="space-y-5 sm:space-y-6">
         {question.options.map((option, index) => {
           const isSelected = selectedAnswer === index;
           const isCorrect = index === question.correctAnswer;
           
-          let buttonClass = 'w-full p-6 text-left rounded-2xl transition-all duration-200 font-semibold shadow-md text-lg border-3 ';
+          let buttonClass = 'w-full p-6 sm:p-7 lg:p-8 text-left rounded-3xl transition-all duration-200 font-semibold shadow-2xl text-lg sm:text-xl lg:text-2xl border-4 ';
           
           if (showFeedback) {
             if (isCorrect) {
-              buttonClass += 'bg-gradient-to-r from-emerald-500 to-green-600 border-emerald-600 text-white shadow-xl';
+              buttonClass += 'bg-gradient-to-r from-emerald-500 to-green-600 border-emerald-600 text-white';
             } else if (isSelected && !isCorrect) {
-              buttonClass += 'bg-gradient-to-r from-rose-500 to-red-600 border-rose-600 text-white shadow-xl';
+              buttonClass += 'bg-gradient-to-r from-rose-500 to-red-600 border-rose-600 text-white';
             } else {
-              buttonClass += 'bg-gray-100 border-gray-200 text-gray-400';
+              buttonClass += 'bg-white/50 backdrop-blur-sm border-white/50 text-gray-400';
             }
           } else {
             buttonClass += isSelected
-              ? 'bg-gradient-to-r from-violet-500 to-purple-600 border-violet-600 text-white transform scale-[1.02] shadow-xl'
-              : 'bg-white border-gray-300 text-gray-700 hover:border-violet-400 hover:shadow-lg hover:bg-violet-50 hover:scale-[1.01]';
+              ? 'bg-gradient-to-r from-violet-500 to-purple-600 border-violet-600 text-white transform scale-[1.03]'
+              : 'bg-white/95 backdrop-blur-sm border-white/50 text-gray-800 hover:border-violet-400 hover:bg-white hover:scale-[1.02]';
           }
 
           return (
@@ -60,8 +60,8 @@ const QuestionCard = ({
             >
               <div className="flex items-center justify-between">
                 <span>{option}</span>
-                {showFeedback && isCorrect && <span className="text-3xl">✓</span>}
-                {showFeedback && isSelected && !isCorrect && <span className="text-3xl">✗</span>}
+                {showFeedback && isCorrect && <span className="text-4xl">✓</span>}
+                {showFeedback && isSelected && !isCorrect && <span className="text-4xl">✗</span>}
               </div>
             </button>
           );
@@ -71,7 +71,7 @@ const QuestionCard = ({
       {/* Feedback */}
       {showFeedback && (
         <div
-          className={`p-6 rounded-2xl text-center font-bold text-xl shadow-lg ${
+          className={`p-8 rounded-3xl text-center font-bold text-xl sm:text-2xl shadow-2xl ${
             selectedAnswer === question.correctAnswer
               ? 'bg-gradient-to-r from-emerald-500 to-green-600 text-white'
               : 'bg-gradient-to-r from-rose-500 to-red-600 text-white'
