@@ -32,10 +32,10 @@ const Leaderboard = ({ onClose }: LeaderboardProps) => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-violet-600 via-purple-600 to-fuchsia-600 py-12 px-6 sm:px-12 lg:px-20">
-      <div className="max-w-6xl">
+    <div className="min-h-screen h-full bg-gradient-to-br from-violet-600 via-purple-600 to-fuchsia-600 py-16 px-8 sm:py-20 sm:px-16 lg:px-24">
+      <div className="w-full max-w-6xl mx-auto">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-8 mb-20">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-10 mb-24">
           <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold text-white drop-shadow-lg">
             🏆 Leaderboard
           </h1>
@@ -57,11 +57,11 @@ const Leaderboard = ({ onClose }: LeaderboardProps) => {
           </div>
         ) : (
           <>
-            <div className="space-y-8 mb-16">
+            <div className="space-y-10 sm:space-y-12 mb-20">
               {entries.map((entry, index) => (
                 <div
                   key={index}
-                  className={`flex items-center justify-between p-10 sm:p-12 rounded-3xl shadow-2xl transform transition hover:scale-[1.01] ${
+                  className={`flex items-center justify-between p-12 sm:p-14 md:p-16 rounded-3xl shadow-2xl transform transition hover:scale-[1.01] ${
                     index === 0
                       ? 'bg-gradient-to-r from-amber-300 to-yellow-400 border-4 border-amber-500'
                       : index === 1
