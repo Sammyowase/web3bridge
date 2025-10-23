@@ -14,26 +14,26 @@ const QuestionCard = ({
   showFeedback,
 }: QuestionCardProps) => {
   return (
-    <div className="space-y-6">
-      <div className="bg-gradient-to-r from-pink-100 via-purple-100 to-indigo-100 p-6 rounded-2xl shadow-lg border-2 border-purple-200">
-        <div className={`inline-block px-4 py-1 rounded-full text-sm font-bold mb-3 ${
+    <div className="space-y-4 sm:space-y-6">
+      <div className="bg-gradient-to-r from-pink-100 via-purple-100 to-indigo-100 p-4 sm:p-6 rounded-xl sm:rounded-2xl shadow-lg border-2 border-purple-200">
+        <div className={`inline-block px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-bold mb-2 sm:mb-3 ${
           question.category === 'Web3' 
             ? 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white' 
             : 'bg-gradient-to-r from-orange-500 to-pink-500 text-white'
         }`}>
           {question.category}
         </div>
-        <h2 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+        <h2 className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent leading-tight">
           {question.question}
         </h2>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2 sm:space-y-3 md:space-y-4">
         {question.options.map((option, index) => {
           const isSelected = selectedAnswer === index;
           const isCorrect = index === question.correctAnswer;
           
-          let buttonClass = 'w-full p-5 text-left rounded-2xl border-3 transition-all duration-300 font-semibold shadow-md ';
+          let buttonClass = 'w-full p-3 sm:p-4 md:p-5 text-left rounded-xl sm:rounded-2xl border-2 sm:border-3 transition-all duration-300 font-semibold shadow-md text-sm sm:text-base ';
           
           if (showFeedback) {
             if (isCorrect) {
@@ -68,7 +68,7 @@ const QuestionCard = ({
 
       {showFeedback && (
         <div
-          className={`p-5 rounded-2xl text-center font-bold text-lg shadow-lg ${
+          className={`p-3 sm:p-4 md:p-5 rounded-xl sm:rounded-2xl text-center font-bold text-sm sm:text-base md:text-lg shadow-lg ${
             selectedAnswer === question.correctAnswer
               ? 'bg-gradient-to-r from-green-400 to-emerald-500 text-white shadow-green-300'
               : 'bg-gradient-to-r from-red-400 to-pink-500 text-white shadow-red-300'

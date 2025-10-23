@@ -180,34 +180,34 @@ const QuizGame = () => {
   const currentQuestion = questions[quizState.currentQuestionIndex];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-500 via-purple-600 via-blue-600 to-cyan-500 flex items-center justify-center p-4 animate-gradient">
-      <div className="w-full max-w-2xl">
-        <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-8 border-4 border-purple-300">
-          <div className="flex justify-between items-center mb-6">
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 bg-clip-text text-transparent">
+    <div className="min-h-screen bg-gradient-to-br from-pink-500 via-purple-600 via-blue-600 to-cyan-500 flex items-center justify-center p-2 sm:p-4 md:p-6">
+      <div className="w-full max-w-4xl">
+        <div className="bg-white/95 backdrop-blur-sm rounded-2xl sm:rounded-3xl shadow-2xl p-4 sm:p-6 md:p-8 border-2 sm:border-4 border-purple-300">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-0 mb-4 sm:mb-6">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 bg-clip-text text-transparent">
               🎮 Web Quiz Game
             </h1>
             <button
               onClick={() => setShowLeaderboard(true)}
-              className="px-5 py-3 bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-bold rounded-xl hover:from-yellow-500 hover:to-orange-600 transition shadow-lg hover:shadow-xl transform hover:scale-105"
+              className="w-full sm:w-auto px-4 sm:px-5 py-2 sm:py-3 bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-sm sm:text-base font-bold rounded-xl hover:from-yellow-500 hover:to-orange-600 transition shadow-lg hover:shadow-xl transform hover:scale-105"
             >
               🏆 Leaderboard
             </button>
           </div>
 
-          <div className="flex justify-between items-center mb-6">
-            <div className="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-xl shadow-md">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-0 mb-4 sm:mb-6">
+            <div className="w-full sm:w-auto px-3 sm:px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-sm sm:text-base font-bold rounded-xl shadow-md text-center">
               Question {quizState.currentQuestionIndex + 1} of {questions.length}
             </div>
-            <div className="px-4 py-2 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold rounded-xl shadow-md">
+            <div className="w-full sm:w-auto px-3 sm:px-4 py-2 bg-gradient-to-r from-green-500 to-emerald-500 text-white text-sm sm:text-base font-bold rounded-xl shadow-md text-center">
               Score: {quizState.score}
             </div>
           </div>
 
-          <div className="mb-6">
-            <div className="flex justify-between items-center mb-3">
-              <span className="text-sm font-bold text-purple-700">⏱️ Time Remaining</span>
-              <span className={`text-2xl font-bold px-4 py-1 rounded-xl ${
+          <div className="mb-4 sm:mb-6">
+            <div className="flex justify-between items-center mb-2 sm:mb-3">
+              <span className="text-xs sm:text-sm font-bold text-purple-700">⏱️ Time Remaining</span>
+              <span className={`text-lg sm:text-2xl font-bold px-3 sm:px-4 py-1 rounded-xl ${
                 quizState.timeRemaining! <= 10 
                   ? 'bg-gradient-to-r from-red-500 to-pink-500 text-white animate-pulse' 
                   : 'bg-gradient-to-r from-green-500 to-emerald-500 text-white'
@@ -215,9 +215,9 @@ const QuizGame = () => {
                 {quizState.timeRemaining}s
               </span>
             </div>
-            <div className="w-full bg-gray-200 rounded-full h-4 shadow-inner">
+            <div className="w-full bg-gray-200 rounded-full h-3 sm:h-4 shadow-inner">
               <div
-                className={`h-4 rounded-full transition-all duration-1000 shadow-lg ${
+                className={`h-3 sm:h-4 rounded-full transition-all duration-1000 shadow-lg ${
                   quizState.timeRemaining! <= 10 
                     ? 'bg-gradient-to-r from-red-500 to-pink-600' 
                     : 'bg-gradient-to-r from-green-500 to-emerald-600'
